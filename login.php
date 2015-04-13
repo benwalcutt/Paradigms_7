@@ -117,7 +117,7 @@ if (isset($_POST["register"])) {
 	$acct->email = htmlentities($_POST['email']);
 	$acct->username = htmlentities($_POST['username']);
 	$acct->password = htmlentities($_POST['password']);
-	$re_password = htmlentities($_POST['re_password']);
+	$re_password = htmlentities($_POST['re_password']);}
 	
 	$accounts_array []= $acct;
 	
