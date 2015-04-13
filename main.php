@@ -29,11 +29,10 @@ $accounts_array = json_decode(file_get_contents("accounts.json"));
 if (isset($_POST['submitter'])) {
 	$target_dir = "Files/";
 	$target_file = $target_dir . basename($_FILES["uploader"]["name"]);
-	$uploadOk = 1;}
+	$uploadOk = 1;
 
 	if (move_uploaded_file($_FILES["uploader"]["tmp_name"], $target_file)) {
 		$uploadOk = 1;
-	}
 	else {
 		$uploadOk = 0;
 	}
