@@ -26,17 +26,11 @@ umask($oldmask);
 $accounts_array = array();
 $accounts_array = json_decode(file_get_contents("accounts.json"));
 
-if (isset($_POST['submitter'])) {
+if (isset($_POST['upload'])) {
 	$target_dir = "Files/";
-	$target_file = $target_dir . basename($_FILES["uploader"]["name"]);
-	$uploadOk = 1;
+	$target_file = $target_dir . basename($_FILES["upload_file"]["name"]);
 
-	if (move_uploaded_file($_FILES["uploader"]["tmp_name"], $target_file)) {
-		$uploadOk = 1;
-	else {
-		$uploadOk = 0;
-	}
-}
+	move_uploaded_file($_FILES["upload_file"]["tmp_name"], $target_file);
 $found = 0;
 foreach ($accounts_array as $value) {
 	
@@ -52,15 +46,15 @@ if (!$found)
 
 <html>
 <head>
-<title>Ben-Box</title>
+<title>Files page</title>
 
 </head>
 
 <body>
-<div align='center'><h1>Welcome to Ben-Box</div>
+<div align='center'>Files</div>
 
 <br>
-<h3>Hello, <?php echo $username;?>!
+Hi, <?php echo $username;?>!
 <br>
 <br>
 <form action="login.php" method="post">
@@ -68,7 +62,7 @@ if (!$found)
 </form>
 
 <br>
-<h4>Files:
+Files:
 <br>
 <form action="" method="post">
 <?php 
@@ -76,8 +70,8 @@ $dir = "Files/";
 if (isset($_POST['delete'])) {
 	foreach($_POST['check_list'] as $key) {
 		if ($key !== "delete") {
-			$addy = $dir . $key;
-			if (!unlink($addy))
+			$address = $dir . $key;
+			if (!unlink($address))
 				echo "Deletion failed.\n";
 		}
 	}	
@@ -95,15 +89,15 @@ foreach($files as $value) {
 }
 echo "<br>";
 ?>
-<input type="submit" value="Delete Selected Files" name="delete">
+<input type="submit" value="Delete" name="delete">
 </form>
 <hr>
-<h4>Upload a file:
+Upload:
 <br>
 <form action="" method="post" enctype="multipart/form-data">
-<input type="file" name="uploader">
+<input type="file" name="upload_file">
 <br>
-<input type="submit" name="submitter" value="Upload">
+<input type="submit" name="upload" value="Upload">
 </form>
 
 </body>
