@@ -37,7 +37,7 @@ Password:
 </form>
 
 <br>
-If you do not already have an account, please create one:
+Make new account:
 <form action="<?php print($_SERVER['SCRIPT_NAME'])?>" method="post">
 Name:
 <input type="text" name="name">
