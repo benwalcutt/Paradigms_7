@@ -19,8 +19,9 @@ class account {
 }
 
 $oldmask = umask(0);
-if(!mkdir("Files"))
+if(!mkdir("Files")) {
 	//die("Error: Failed to make folder.");
+}
 umask($oldmask);
 
 $accounts_array = array();
@@ -31,6 +32,7 @@ if (isset($_POST['upload'])) {
 	$target_file = $target_dir . basename($_FILES["upload_file"]["name"]);
 
 	move_uploaded_file($_FILES["upload_file"]["tmp_name"], $target_file);
+}
 $found = 0;
 foreach ($accounts_array as $value) {
 	
